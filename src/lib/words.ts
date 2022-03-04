@@ -72,19 +72,23 @@ export const localeAwareUpperCase = (text: string) => {
     : text.toUpperCase()
 }
 
-export const getWordOfDay = () => {
+export const getWordOfMinute = () => {
+// export const getWordOfDay = () => {
   // January 1, 2022 Game Epoch
   const epochMs = new Date('January 1, 2022 00:00:00').valueOf()
   const now = Date.now()
-  const msInDay = 86400000
-  const index = Math.floor((now - epochMs) / msInDay)
-  const nextday = (index + 1) * msInDay + epochMs
+  const msInMinute = 60000
+  // const msInDay = 86400000
+  const index = Math.floor((now - epochMs) / msInMinute)
+  // const nextday = (index + 1) * msInDay + epochMs
+  const nextmin = (index + 1) * msInMinute + epochMs
 
   return {
     solution: localeAwareUpperCase(WORDS[index % WORDS.length]),
     solutionIndex: index,
-    tomorrow: nextday,
+    // tomorrow: nextday,
+    minute: nextmin,
   }
 }
 
-export const { solution, solutionIndex, tomorrow } = getWordOfDay()
+export const { solution, solutionIndex, minute } = getWordOfMinute()
